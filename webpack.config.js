@@ -1,4 +1,6 @@
 var webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+var CssSourcemapPlugin = require('css-sourcemaps-webpack-plugin');
 
 module.exports = {
     context: __dirname,
@@ -15,12 +17,20 @@ module.exports = {
                     plugins: ['react-html-attrs', 'transform-class-properties',
                      'transform-decorators-legacy']
                 }
+            },
+            {
+                test: /\.scss$/,
+                loader: ExtractTextPlugin.extract('css!sass')
             }
         ]
     },
     output: {
         path: __dirname,
         filename: 'dist/bundle.js'
-    }
+    },
+    plugins: [
+        new ExtractTextPlugin('src/assets/stylesheets/app.css', { allChunks: true }),
+        new CssSourcemapPlugin()
+    ]
 
 };
