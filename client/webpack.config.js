@@ -26,10 +26,10 @@ module.exports = {
     },
     output: {
         path: __dirname,
-        filename: 'dist/bundle.js'
+        filename: 'dist/js/bundle.js'
     },
     plugins: [
-        new ExtractTextPlugin('client/src/assets/stylesheets/app.css', { allChunks: true }),
+        new ExtractTextPlugin('dist/css/app.css'),
         new CssSourcemapPlugin()
     ]
 
